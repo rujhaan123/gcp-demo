@@ -1,3 +1,9 @@
+provider "google" {
+  credentials = file(var.GOOGLE_CREDENTIALS)
+  project     = var.project
+  region      = var.region
+}
+
 resource "google_compute_network" "vpc_network" {
   name                    = "my-custom-mode-network"
   auto_create_subnetworks = false
