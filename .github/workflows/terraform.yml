@@ -3,7 +3,8 @@ name: 'Terraform'
 on:
   push:
     branches: [ "main" ]
-  pull_request:
+  #pull_request: 
+  #commenting out as we need to start workflow after pushing to main branch only
 
 permissions:
   contents: read
