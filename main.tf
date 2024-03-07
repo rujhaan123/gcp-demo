@@ -83,7 +83,7 @@ module "gke" {
       logging_variant           = "DEFAULT"
       auto_repair               = true
       auto_upgrade              = true
-      service_account           = "tfe-test-account@triple-silo-412717.iam.gserviceaccount.com"
+      service_account           = "project-service-account@triple-silo-412717.iam.gserviceaccount.com"
       preemptible               = false
       initial_node_count        = 80
     },
