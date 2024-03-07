@@ -95,12 +95,4 @@ module "gke" {
       "https://www.googleapis.com/auth/monitoring",
     ]
   }
-
-  node_pools_tags = {
-    all = []
-
-    default-node-pool = [
-      "default-node-pool",
-    ]
-  }
 }
