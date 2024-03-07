@@ -56,7 +56,7 @@ module "gke" {
   project_id                 = var.project
   name                       = "gke-test-1-tfe"
   region                     = "us-west1"
-  zones                      = ["us-west1]
+  zones                      = ["us-west1"]
   network                    = "vpc-01"
   subnetwork                 = "us-central1-01"
   ip_range_pods              = "us-central1-01-gke-01-pods"
@@ -70,7 +70,7 @@ module "gke" {
     {
       name                      = "default-node-pool"
       machine_type              = "e2-medium"
-      node_locations            = "us-central1-b,us-central1-c"
+      node_locations            = "us-west1-b,us-west1-c"
       min_count                 = 2
       max_count                 = 4
       local_ssd_count           = 0
@@ -83,7 +83,7 @@ module "gke" {
       logging_variant           = "DEFAULT"
       auto_repair               = true
       auto_upgrade              = true
-      service_account           = "project-service-account@<PROJECT ID>.iam.gserviceaccount.com"
+      service_account           = "tfe-test-account@triple-silo-412717.iam.gserviceaccount.com"
       preemptible               = false
       initial_node_count        = 80
     },
