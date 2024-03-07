@@ -5,7 +5,7 @@ on:
     branches: [ "main" ]
 
 env:
-  TF_CLOUD_ORGANIZATION: "Rujhaan-Resource "
+  TF_CLOUD_ORGANIZATION: "Rujhaan-Resource"
   TF_API_TOKEN: "${{ secrets.TF_API_TOKEN }}"
   TF_WORKSPACE: "gcp-rg-deploy"
   CONFIG_DIRECTORY: "./"
