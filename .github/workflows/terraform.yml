@@ -44,25 +44,11 @@ jobs:
         run: terraform fmt -check
 
       # Terraform Plan with variables passed as inputs  
-      - name: Terraform Plan with Variables
-        run: |
-          terraform plan -input=false \
-            -var GOOGLE_CREDENTIALS=${{ inputs.GOOGLE_CREDENTIALS }} \
-            -var project=${{ inputs.project }} \
-            -var region=${{ inputs.region }}
+      - name: Terraform Plan
+        run: terraform plan -input=false
 
       # On push to "main", build or change infrastructure according to Terraform configuration files
       # Note: It is recommended to set up a required "strict" status check in your repository for "Terraform Cloud". See the documentation on "strict" required status checks for more information: https://help.github.com/en/github/administering-a-repository/types-of-required-status-checks
       - name: Terraform Apply
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-        run: |
-          terraform apply -auto-approve -input=false \
-            -var GOOGLE_CREDENTIALS=${{ inputs.GOOGLE_CREDENTIALS }} \
-            -var project=${{ inputs.project }} \
-            -var region=${{ inputs.region }}
-
-# Define the required variables as inputs for the job
-inputs:
-  GOOGLE_CREDENTIALS: { required: true }
-  project: { required: true }
-  region: { required: true }
+        run: terraform apply -auto-approve -input=false
