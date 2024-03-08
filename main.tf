@@ -85,7 +85,7 @@ module "gke" {
       auto_upgrade              = true
       service_account           = "tfe-test-account@triple-silo-412717.iam.gserviceaccount.com"
       preemptible               = false
-      initial_node_count        = 80
+      initial_node_count        = 2
     },
   ]
 
