@@ -18,7 +18,7 @@ resource "google_compute_subnetwork" "default" {
 }
 
 # Create a single Compute Engine instance
-resource "google_compute_instance" "default" {
+/*resource "google_compute_instance" "default" {
   name         = "flask-vm"
   machine_type = "f1-micro"
   zone         = "us-west1-a"
@@ -40,7 +40,7 @@ resource "google_compute_instance" "default" {
       # Include this section to give the VM an external IP address
     }
   }
-}
+} */
 
 # google_client_config and kubernetes provider must be explicitly specified like the following.
 data "google_client_config" "default" {}
