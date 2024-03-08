@@ -56,7 +56,7 @@ module "gke" {
   project_id                 = var.project
   name                       = "gke-test-1-tfe"
   region                     = "us-west1"
-  zones                      = ["us-west1"]
+  zones                      = ["us-west1-a"]
   network                    = "vpc-01"
   subnetwork                 = "us-central1-01"
   ip_range_pods              = "us-central1-01-gke-01-pods"
