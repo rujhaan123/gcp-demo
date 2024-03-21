@@ -70,7 +70,7 @@ module "gke" {
     {
       name                      = "default-node-pool"
       machine_type              = "e2-standard-2"
-      node_locations            = "us-west1-b"
+      node_locations            = "us-west1-b,us-west1-a,us-west1-c"
       min_count                 = 2
       max_count                 = 4
       local_ssd_count           = 0
