@@ -57,7 +57,7 @@ resource "google_compute_instance" "default" {
   }
 
   metadata = {
-    ssh-keys = "user:${file(var.publickeypath)}"
+    ssh-keys = "user:${var.public_key}"
   }
 }
 
