@@ -13,3 +13,13 @@ variable "region" {
   type        = string
 }
 
+variable "privatekeypath" {
+  type    = string
+  default = "~/.ssh/id_rsa"
+}
+
+variable "publickeypath" {
+  type    = string
+  default = "~/.ssh/id_rsa.pub"
+}
+
