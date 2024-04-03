@@ -18,7 +18,7 @@ variable "privatekeypath" {
   default = "~/.ssh/id_rsa"
 }
 
-variable "publickeypath" {
+variable "public_key" {
   type    = string
   default = "~/.ssh/id_rsa.pub"
 }
