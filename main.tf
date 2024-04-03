@@ -17,33 +17,54 @@ resource "google_compute_subnetwork" "default" {
   network       = google_compute_network.vpc_network.id
 }
 
-# Create a single Compute Engine instance
-/*resource "google_compute_instance" "default" {
-  name         = "flask-vm"
-  machine_type = "f1-micro"
+resource "google_compute_firewall" "firewall" {
+  name    = "new-firewall-externalssh"
+  network = google_compute_network.vpc_network.name
+
+  allow {
+    protocol = "tcp"
+    ports    = ["22","443"]
+  }
+
+  source_ranges = ["0.0.0.0/0"] # Not So Secure. Limit the Source Range
+  target_tags   = ["externalssh"]
+}
+
+resource "google_compute_address" "static" {
+  name       = "vm-public-address"
+  project    = var.project
+  region     = var.region
+  depends_on = [google_compute_firewall.firewall]
+}
+
+resource "google_compute_instance" "default" {
+  name         = "terraform-instance"
+  machine_type = "e2-medium"
   zone         = "us-west1-a"
-  tags         = ["ssh"]
 
   boot_disk {
     initialize_params {
-      image = "debian-cloud/debian-11"
+      image = "centos-cloud/centos-7"
     }
   }
-
-  # Install Flask
-  metadata_startup_script = "sudo apt-get update; sudo apt-get install -yq build-essential python3-pip rsync; pip install flask"
 
   network_interface {
-    subnetwork = google_compute_subnetwork.default.id
+    network = google_compute_network.vpc_network.name
+    subnetwork = google_compute_subnetwork.default.name
 
     access_config {
-      # Include this section to give the VM an external IP address
+      nat_ip = google_compute_address.static.address
     }
   }
-} */
+
+  metadata = {
+    ssh-keys = "user:${var.public_key}"
+  }
+}
+
 
 # google_client_config and kubernetes provider must be explicitly specified like the following.
-data "google_client_config" "default" {}
+/* data "google_client_config" "default" {}
 
 provider "kubernetes" {
   host                   = "https://${module.gke.endpoint}"
@@ -95,4 +116,4 @@ module "gke" {
       "https://www.googleapis.com/auth/monitoring",
     ]
   }
-}
+} */
