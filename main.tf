@@ -40,10 +40,11 @@ resource "google_compute_address" "static" {
 resource "google_compute_instance" "default" {
   name         = "terraform-instance"
   machine_type = "e2-medium"
+  zone         = "us-west1-a"
 
   boot_disk {
     initialize_params {
-      image = "centos-7-v20200403"
+      image = "centos-cloud/centos-7"
     }
   }
 
